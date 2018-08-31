@@ -32,15 +32,69 @@
     <ClCompile Include="DataIO.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Viewer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataIO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Viewer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GL\gl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GL\glext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GL\glut.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GL\wglext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glh\glh_array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glh\glh_convenience.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glh\glh_cube_map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glh\glh_extensions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glh\glh_genext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glh\glh_glut.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glh\glh_glut_callfunc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glh\glh_glut_replay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glh\glh_glut_text.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glh\glh_glut2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glh\glh_interactors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glh\glh_linear.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glh\glh_mipmaps.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glh\glh_obs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glh\glh_text.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

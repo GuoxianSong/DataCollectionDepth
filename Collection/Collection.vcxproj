@@ -40,15 +40,15 @@
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(OPENNI2_DIR)\include;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtOpenGL;$(OPENNI2_DIR)\..\ThirdParty\GL;$(OPENNI2_DIR)\..\Samples\Common;$(OPENCV_DIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(OPENNI2_DIR)\include;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtOpenGL;$(OPENNI2_INCLUDE64);$(OPENCV_DIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;$(OPENNI2_DIR)\..\ThirdParty\GL;$(OPENNI2_DIR)\lib;$(OPENCV_DIR)\x64\vc12\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;$(OPENCV_DIR)\x64\vc12\lib;$(OPENNI2_LIB64);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;Qt5Guid.lib;Qt5OpenGLd.lib;opengl32.lib;glu32.lib;OpenNI2.lib;glut64.lib;opencv_imgproc300d.lib;opencv_imgcodecs300d.lib;opencv_objdetect300d.lib;opencv_highgui300d.lib;opencv_core300d.lib;opencv_videoio300d.lib;opencv_video300d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>OpenNI2.lib;glut64.lib;opencv_imgproc300d.lib;opencv_imgcodecs300d.lib;opencv_objdetect300d.lib;opencv_highgui300d.lib;opencv_core300d.lib;opencv_videoio300d.lib;opencv_video300d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -70,10 +70,28 @@
   <ItemGroup>
     <ClCompile Include="DataIO.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Viewer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataIO.h" />
+    <ClInclude Include="glh\glh_array.h" />
+    <ClInclude Include="glh\glh_convenience.h" />
+    <ClInclude Include="glh\glh_cube_map.h" />
+    <ClInclude Include="glh\glh_extensions.h" />
+    <ClInclude Include="glh\glh_genext.h" />
+    <ClInclude Include="glh\glh_glut.h" />
+    <ClInclude Include="glh\glh_glut2.h" />
+    <ClInclude Include="glh\glh_glut_callfunc.h" />
+    <ClInclude Include="glh\glh_glut_replay.h" />
+    <ClInclude Include="glh\glh_glut_text.h" />
+    <ClInclude Include="glh\glh_interactors.h" />
+    <ClInclude Include="glh\glh_linear.h" />
+    <ClInclude Include="glh\glh_mipmaps.h" />
+    <ClInclude Include="glh\glh_obs.h" />
+    <ClInclude Include="glh\glh_text.h" />
+    <ClInclude Include="GL\gl.h" />
+    <ClInclude Include="GL\glext.h" />
+    <ClInclude Include="GL\glut.h" />
+    <ClInclude Include="GL\wglext.h" />
     <ClInclude Include="Viewer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

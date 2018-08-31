@@ -4,10 +4,14 @@
 
 DataIO::DataIO()
 {
-	G_RES_X = 320;
-	G_RES_Y = 240;
+	D_RES_X = 640; //For depth
+	D_RES_Y = 480;
+
+	C_RES_X = 1920;
+	C_RES_Y=1080;
+	fps_ = 30;
 	save_ = false;
-	save_path = "C:\\Users\\IMI-GuoXian\\Desktop\\Work\\MultiCam\\Data\\";
+	save_path = "D:\\HDFace_Data\\";
 }
 
 
@@ -58,7 +62,8 @@ void DataIO::Init()
 		}
 
 		video_mode = sensorDepthStreams_[i]->getVideoMode();
-		video_mode.setResolution(G_RES_X, G_RES_Y);
+		video_mode.setResolution(D_RES_X, D_RES_Y);
+		video_mode.setFps(fps_);
 		printf("Depth mode: %d %d FPS:%d\n", video_mode.getResolutionX(), video_mode.getResolutionY(), video_mode.getFps());
 		sensorDepthStreams_[i]->setVideoMode(video_mode);
 	}
@@ -74,10 +79,17 @@ void DataIO::Init()
 			openni::OpenNI::shutdown();
 		}
 
+		//640x480
 		video_mode = sensorColorStreams_[i]->getVideoMode();
-		video_mode.setResolution(G_RES_X, G_RES_Y);
+		video_mode.setResolution(C_RES_X, C_RES_Y); //2592 x 1944 max but not work
+		video_mode.setFps(fps_);
 		printf("Color mode: %d %d FPS:%d\n", video_mode.getResolutionX(), video_mode.getResolutionY(), video_mode.getFps());
 		sensorColorStreams_[i]->setVideoMode(video_mode);
+
+		// Set HD face
+		//const openni::SensorInfo* sinfo = sensors_[i]->getSensorInfo(openni::SENSOR_DEPTH);
+		//const openni::Array< openni::VideoMode>& modesColor = sinfo->getSupportedVideoModes();
+		//rc = sensorColorStreams_[i]->setVideoMode(modesColor[10]);
 	}
 
 
@@ -169,9 +181,9 @@ void DataIO::Loop()
 
 			mScaledDepth.convertTo(mScaledDepth, CV_8U, 255.0 / 1000);
 
-			cv::Size size(640, 480);
-			cv::resize(cImageBGR, cImageBGR, size);//resize image
-			cv::resize(mScaledDepth, mScaledDepth, size);//resize image
+			//cv::Size size(640, 480);
+			//cv::resize(cImageBGR, cImageBGR, size);//resize image
+			//cv::resize(mScaledDepth, mScaledDepth, size);//resize image
 			if (i == 0)
 			{
 				cv::imshow("Color0 Image", cImageBGR);

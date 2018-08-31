@@ -29,7 +29,9 @@ private:
 	vector<openni::VideoStream*>	sensorColorStreams_;
 	vector<openni::VideoFrameRef>	sensorDepthRefs_;
 	vector<openni::VideoFrameRef>	sensorColorDefs_;
-	int G_RES_X, G_RES_Y;
+	int D_RES_X, D_RES_Y;
+	int C_RES_X, C_RES_Y;
+	int fps_;
 	int nrKinects;
 	bool save_;
 	string save_path;

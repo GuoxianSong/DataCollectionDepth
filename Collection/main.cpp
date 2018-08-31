@@ -1,10 +1,4 @@
-#include <QtCore/QCoreApplication>
-
 #include"DataIO.h"
-
-
-
-
 int main(int argc, char *argv[])
 {
 
@@ -14,8 +8,4 @@ int main(int argc, char *argv[])
 	dataio_.Stop();
 	return 0;
 
-
-	QCoreApplication a(argc, argv);
-	//dataio_.Run(argc, argv);
-	return a.exec();
 }
