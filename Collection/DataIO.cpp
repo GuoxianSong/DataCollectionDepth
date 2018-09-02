@@ -180,10 +180,15 @@ void DataIO::Loop()
 			}
 
 			mScaledDepth.convertTo(mScaledDepth, CV_8U, 255.0 / 1000);
-
+			detector_.FaceDetect(cImageBGR);
+			detector_.Draw(cImageBGR, false);
+			detector_.Draw(mScaledDepth, true);
 			//cv::Size size(640, 480);
 			//cv::resize(cImageBGR, cImageBGR, size);//resize image
 			//cv::resize(mScaledDepth, mScaledDepth, size);//resize image
+
+
+
 			if (i == 0)
 			{
 				cv::imshow("Color0 Image", cImageBGR);
@@ -370,4 +375,62 @@ int DataIO::debug()
 {
 	
 	return 0;
+}
+
+void DataIO::RunCollection()
+{
+	save_path = "D:\\HDFace_Data\\0901gx\\new_depth_pos\\";
+	string depth_path = "D:\\HDFace_Data\\0901gx\\depth\\0\\";
+	for (int i = 2110; i < 2800; i++)
+	{
+		Mat depth;
+		FileStorage fs2(depth_path + to_string(i) + ".txt", FileStorage::READ);
+		fs2["depth"] >> depth;
+		fs2.release();
+
+		Depth2World(depth, i);
+		break;
+	}
+
+}
+
+void DataIO::Depth2World(cv::Mat depthImage, int index)
+{
+	ofstream x_save, y_save, z_save;
+	x_save.open(save_path + to_string(index) + "_x.txt");
+	y_save.open(save_path + to_string(index) + "_y.txt");
+	z_save.open(save_path + to_string(index) + "_z.txt");
+	depthImage.convertTo(depthImage, CV_16U);
+	float x_ = 0;
+	float y_ = 0;
+	float z_ = 0;
+	if (sensorDepthStreams_[0]->readFrame(&sensorDepthRefs_[0]) == STATUS_OK)
+	{
+
+
+		for (int i = 0; i < 480; i++)
+		{
+
+			for (int j = 0; j < 640; j++)
+			{
+
+				//cv::Mat depthImage;
+				//depthImage = cv::Mat(sensorDepthStreams_[0]->getVideoMode().getResolutionY(), sensorDepthStreams_[0]->getVideoMode().getResolutionX(),
+				//	CV_16U, (char*)sensorDepthRefs_[0].getData());
+
+				openni::CoordinateConverter::convertDepthToWorld(*sensorDepthStreams_[0], i, j, depthImage.at<openni::DepthPixel>(i, j), &x_, &y_, &z_);
+				x_save << x_ << " ";
+				y_save << y_ << " ";
+				z_save << z_ << " ";
+
+			}
+
+			x_save << "\n";
+			y_save << "\n";
+			z_save << "\n";
+		}
+	}
+	x_save.close();
+	y_save.close();
+	z_save.close();
 }
