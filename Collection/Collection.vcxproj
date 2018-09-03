@@ -46,7 +46,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;$(OPENCV_DIR)\x64\vc12\lib;$(OPENNI2_LIB64);E:\Library\dlib-19.4\build\dlib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;$(OPENCV_DIR)\x64\vc12\lib;$(OPENNI2_LIB64);E:\Library\dlib-19.4\build\dlib\Debug;$(OPENNI2_DIR)\..\ThirdParty\GL;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>OpenNI2.lib;glut64.lib;opencv_imgproc300d.lib;opencv_imgcodecs300d.lib;opencv_objdetect300d.lib;opencv_highgui300d.lib;opencv_core300d.lib;opencv_videoio300d.lib;opencv_video300d.lib;dlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -95,7 +95,6 @@
     <ClInclude Include="GL\glext.h" />
     <ClInclude Include="GL\glut.h" />
     <ClInclude Include="GL\wglext.h" />
-    <ClInclude Include="Viewer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,8 +1,4 @@
 ﻿  DataIO.cpp
-  Detector.cpp
-  source.cpp
-  main.cpp
-  Generating Code...
-e:\hdface\datacollectiondepth\collection\dataio.cpp(372): warning C4715: 'DataIO::Run': not all control paths return a value
+e:\hdface\datacollectiondepth\collection\dataio.cpp(390): warning C4715: 'DataIO::Run': not all control paths return a value
   Collection.vcxproj -> E:\HDface\DataCollectionDepth\x64\Debug\Collection.exe
   Collection.vcxproj -> E:\HDface\DataCollectionDepth\x64\Debug\Collection.pdb (Full PDB)

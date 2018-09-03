@@ -7,6 +7,8 @@ Detector::Detector()
 	isdetect_ = false;
 	detector = get_frontal_face_detector();
 	deserialize("shape_predictor_68_face_landmarks.dat") >> pose_model;
+	std::cout << "Detector Load done  ";
+	low_rgb_ = true;
 }
 
 
@@ -15,7 +17,7 @@ Detector::~Detector()
 }
 
 
-void Detector::FaceDetect(cv::Mat img)
+bool Detector::FaceDetect(cv::Mat img)
 {
 	cv_image<bgr_pixel> cimg(img);
 	// Detect faces 
@@ -33,10 +35,12 @@ void Detector::FaceDetect(cv::Mat img)
 			y_[count] = shape.part(j).y();
 			count += 1;
 		}
+		H2L();
 		isdetect_ = true;
 	}
 	else
 		isdetect_ = false;
+	return isdetect_;
 }
 
 void Detector::Draw(cv::Mat & img, bool isdepth)
@@ -53,7 +57,6 @@ void Detector::Draw(cv::Mat & img, bool isdepth)
 		else
 		{
 			//convert 
-			H2L();
 			for (int i = 0; i < 50; i++)
 			{
 				cv::circle(img, cv::Point(depth_x_[i], depth_y_[i]), 2.0, cv::Scalar(0, 0, 255), 1, 8);
@@ -65,16 +68,47 @@ void Detector::Draw(cv::Mat & img, bool isdepth)
 
 void Detector::H2L()
 {
-	for (int i = 0; i < 50; i++)
+	if (low_rgb_)
 	{
-		depth_x_[i] = int((x_[i] - 960)*0.248069 + 320 + 8.40596);
-		depth_y_[i] = int((y_[i] - 540)*0.248069 + 240 - 19.52178);
+
+		for (int i = 0; i < 50; i++)
+		{
+			depth_x_[i] = int(x_[i]);
+			depth_y_[i] = int(y_[i] );
+		}
+
+	}
+	else
+	{
+		for (int i = 0; i < 50; i++)
+		{
+			depth_x_[i] = int((x_[i] - 960)*0.248069 + 320 + 8.40596);
+			depth_y_[i] = int((y_[i] - 540)*0.248069 + 240 - 19.52178);
+		}
 	}
 
 }
 
-void Detector::Output(int x[50], int y[50])
+void Detector::Output(int x[50], int y[50],bool isdepth)
 {
-	x = x_;
-	y = y_;
+	if (isdetect_)
+	{
+		if (isdepth)
+		{
+			for (int i = 0; i < 50; i++)
+			{
+				x [i]= depth_x_[i];
+				y[i] = depth_y_[i];
+			}
+
+		}
+		else
+		{
+			for (int i = 0; i < 50; i++)
+			{
+				x[i] = x_[i];
+				y[i] = y_[i];
+			}
+		}
+	}
 }

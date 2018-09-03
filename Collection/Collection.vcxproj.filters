@@ -43,9 +43,6 @@
     <ClInclude Include="DataIO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Viewer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GL\gl.h">
       <Filter>Header Files</Filter>
     </ClInclude>

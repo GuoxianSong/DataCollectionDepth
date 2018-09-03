@@ -24,9 +24,12 @@ public:
 	int Run();
 	int debug();
 
-	void Depth2World(cv::Mat depthImage, int index);
+	
 	void RunCollection();
 private:
+
+	bool LMKWorldPos(cv::Mat depthImage, cv::Mat colorImage);
+	void SaveTxt(string path);
 	// Live Capture
 	std::vector<openni::Device*>			sensors_;
 	std::vector<openni::VideoStream*>	sensorDepthStreams_;
@@ -41,5 +44,8 @@ private:
 	string save_path;
 
 	Detector detector_;
+	float LMKpos_[50 * 3] = {};
+	int depth_x_[50] = {};//640x480
+	int depth_y_[50] = {};//640x480
 };
 

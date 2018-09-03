@@ -19,8 +19,8 @@ public:
 	Detector();
 	~Detector();
 
-	void FaceDetect(cv::Mat img);
-	void Output(int x[50],int y[50]);
+	bool FaceDetect(cv::Mat img);
+	void Output(int x[50],int y[50], bool isdepth);
 	void Draw(cv::Mat& img, bool isdepth);
 	int x_[50];//u axis
 	int y_[50];//v axis
@@ -33,5 +33,6 @@ private:
 	shape_predictor pose_model;
 
 	void H2L();//conver 1920x1080 2 640x480
+	bool low_rgb_;
 };
 
